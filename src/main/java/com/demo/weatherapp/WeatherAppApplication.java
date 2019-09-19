@@ -27,7 +27,7 @@ public class WeatherAppApplication {
 	}
 
 	@Bean
-	public Docket getSwaggerDcoket() {
+	public Docket getSwaggerDocket() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.paths(PathSelectors.ant("/weatherapi/*"))

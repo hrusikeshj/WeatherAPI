@@ -32,7 +32,7 @@ public class ServiceException extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(value = { Exception.class })
-	public ResponseEntity<Object> handleExcepttion(Exception exception,
+	public ResponseEntity<Object> handleAllException(Exception exception,
 			WebRequest req) {
 		logger.error("Exception while processing request");
 

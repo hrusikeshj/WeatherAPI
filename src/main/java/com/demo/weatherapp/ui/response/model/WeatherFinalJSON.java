@@ -41,6 +41,5 @@ public class WeatherFinalJSON implements Serializable{
 	public void setList(List<WeatherDetails> list) {
 		this.list = list;
 	}
-
 	
 }

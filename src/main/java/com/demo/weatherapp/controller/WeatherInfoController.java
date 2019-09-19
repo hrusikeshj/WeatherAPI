@@ -14,28 +14,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.weatherapp.services.GetWeatherService;
-import com.demo.weatherapp.ui.request.model.DayWeatherResponse;
+import com.demo.weatherapp.services.WeatherInfoService;
+import com.demo.weatherapp.ui.request.model.HourlyWeatherServiceResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/weatherapi")
-@ApiOperation(value = "Find temperature by zip code", notes = "It will return coolest 3hrs of the day based on Zip code provided", 
-response = DayWeatherResponse.class)
+@ApiOperation(value = "Find temperature by zip code", notes = "It will return coolest 3hrs of the day based on Zip code provided", response = HourlyWeatherServiceResponse.class)
 public class WeatherInfoController {
 
 	Logger logger = LoggerFactory.getLogger(WeatherInfoController.class);
 	@Autowired
-	private GetWeatherService getWeatherService;
+	private WeatherInfoService getWeatherService;
 
 	@GetMapping(path = "/{zipCode}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getWeatherDetails(
+	public ResponseEntity<HourlyWeatherServiceResponse> getWeatherDetailsByZipCode(
 			@ApiParam(value = "ZipCode to look into the temp", required = true) @PathVariable String zipCode)
 			throws JsonProcessingException {
-		
-		logger.info("Entered getWeatherDetails method, ZipCode enetred " + zipCode );
 
-		return new ResponseEntity<String>(getWeatherService.process(zipCode),
+		logger.info("Entered getWeatherDetails method, ZipCode enetred "
+				+ zipCode);
+		HourlyWeatherServiceResponse dayWeatherResponse = getWeatherService
+				.process(zipCode);
+
+		return new ResponseEntity<HourlyWeatherServiceResponse>(dayWeatherResponse,
 				HttpStatus.OK);
 
 	}

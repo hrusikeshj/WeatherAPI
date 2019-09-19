@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class WeatherAppUtility {
 
-	public static String kelvinToFahrenheit(String kelvin) {
+	public static String parseKelvin(String kelvin) {
 
 		float celsius = Float.parseFloat(kelvin) - 273.15F;
 		double fahrenheit = (9 * celsius / 5) + 32;
@@ -17,7 +17,7 @@ public class WeatherAppUtility {
 
 	}
 
-	public static String getTomorrowDate() {
+	public static String dateFormatter() {
 
 		DateTimeFormatter customFormatter = DateTimeFormatter
 				.ofPattern("yyyy-MM-dd");
